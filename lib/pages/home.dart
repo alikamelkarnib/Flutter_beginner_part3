@@ -14,7 +14,9 @@ class _HomeState extends State<Home> {
      body: SafeArea(
          child: Column(
            children: <Widget> [
-             TextButton.icon(onPressed: (){}, icon: Icon(Icons.edit_location),
+             TextButton.icon(onPressed: (){
+               Navigator.pushNamed(context, '/location');
+             }, icon: Icon(Icons.edit_location),
              label:Text('Edit Location'),
              )
            ],
