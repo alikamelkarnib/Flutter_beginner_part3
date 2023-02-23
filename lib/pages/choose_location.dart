@@ -9,16 +9,26 @@ State<Chooselocation> createState() => _ChooselocationState();
 
 class _ChooselocationState extends State<Chooselocation> {
   int counter =0;
+  void getData() async{
+ String username=await Future.delayed(Duration(seconds: 5),(){
+ return 'ali';
+});
+print('wite');
+String bio=await Future.delayed(Duration(seconds: 3),(){
+  return 'abbas';
+});
+print('$username-$bio');
+}
 @override
   void initState() {
 
     super.initState();
-    print('build function ran');
-
+  getData();
+    print('initState function ran');
   }
   @override
   Widget build(BuildContext context) {
-    print('initState function ran');
+
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
