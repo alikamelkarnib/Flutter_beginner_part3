@@ -10,7 +10,7 @@ Map data={};
 
   @override
   Widget build(BuildContext context) {
-    data=ModalRoute.of(context)!.settings.arguments as Map;
+    data=data.isNotEmpty? data : ModalRoute.of(context)!.settings.arguments as Map;
     print(data);
     String bgImage=data['isDaytime']? 'day.png':'night.png';
     Color bgColor=data['isDaytime']? Colors.blueAccent : Colors.indigo[700] as Color;
@@ -28,8 +28,18 @@ Map data={};
              padding: const EdgeInsets.fromLTRB(0,120,0,0),
              child: Column(
                children: <Widget> [
-                 TextButton.icon(onPressed: (){
-                   Navigator.pushNamed(context, '/location');
+                 TextButton.icon(onPressed: () async{
+                dynamic result=  await Navigator.pushNamed(context, '/location');
+                setState(() {
+                  data={
+                    'time':result['time'],
+                    'location':result['location'],
+                    'isDaytime':result['isDaytime'],
+                    'flag':result['flag']
+                  };
+                });
+
+
                  }, icon: Icon(Icons.edit_location,color: Colors.grey[300],),
 
                  label:Text('Edit Location',
