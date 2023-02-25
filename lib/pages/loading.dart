@@ -16,7 +16,7 @@ void   setupwordtime() async{
   WorldTime instance =WorldTime(location :'Beirut',flag:'leb.png',url:'Asia/Beirut');
   await instance.getTimeData();
 Navigator.pushReplacementNamed(context, '/home',arguments: {
- 'location':instance.location,'flag':instance.flag,'time':instance.time,
+ 'location':instance.location,'flag':instance.flag,'time':instance.time,'isDaytime':instance.isDaytime,
 });
 
 }
