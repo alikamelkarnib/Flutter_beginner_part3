@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../services/world_time.dart';
+
 
 
 class Chooselocation extends StatefulWidget{
@@ -8,23 +10,24 @@ State<Chooselocation> createState() => _ChooselocationState();
 }
 
 class _ChooselocationState extends State<Chooselocation> {
-  int counter =0;
-  void getData() async{
- String username=await Future.delayed(Duration(seconds: 5),(){
- return 'ali';
-});
-print('wite');
-String bio=await Future.delayed(Duration(seconds: 3),(){
-  return 'abbas';
-});
-print('$username-$bio');
-}
+
+  List<WorldTime> locations = [
+    WorldTime(url: 'Europe/London', location: 'London', flag: 'uk.png'),
+  WorldTime(url: 'Europe/Athens', location: 'Athens', flag: 'greece.png'),
+  WorldTime(url: 'Africa/Cairo', location: 'Cairo', flag: 'egypt.png'),
+  WorldTime(url: 'Africa/Nairobi', location: 'Nairobi', flag: 'kenya.png'),
+  WorldTime(url: 'America/Chicago', location: 'Chicago', flag: 'usa.png'),
+  WorldTime(url: 'America/New_York', location: 'New York', flag: 'usa.png'),
+  WorldTime(url: 'Asia/Seoul', location: 'Seoul', flag: 'south_korea.png'),
+  WorldTime(url: 'Asia/Jakarta', location: 'Jakarta', flag: 'indonesia.png'),];
+
+
 @override
   void initState() {
 
     super.initState();
-  getData();
-    print('initState function ran');
+
+
   }
   @override
   Widget build(BuildContext context) {
@@ -37,11 +40,24 @@ print('$username-$bio');
         centerTitle: true,
         elevation: 0,
       ),
-      body: ElevatedButton(
-     onPressed:(){setState(() {
-       counter++;
-     });} ,child: Text('click me is $counter'),
-      ),
+    body: ListView.builder(itemCount: locations.length,
+    itemBuilder: (context,index){
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 1,horizontal: 4),
+        child: Card(
+
+          child: ListTile(
+            onTap: (){},
+            title: Text(locations[index].location),
+            leading: CircleAvatar(
+              backgroundImage:AssetImage('assets/${locations[index].flag}') ,
+            ),
+          ),
+        ),
+      );
+    }
+
+    ),
 
     );
   }}

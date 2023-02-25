@@ -13,7 +13,7 @@ Map data={};
     data=ModalRoute.of(context)!.settings.arguments as Map;
     print(data);
     String bgImage=data['isDaytime']? 'day.png':'night.png';
-    Color bgColor=data['isDaytime']? Colors.amber : Colors.indigo[700] as Color;
+    Color bgColor=data['isDaytime']? Colors.blueAccent : Colors.indigo[700] as Color;
     return Scaffold(
       backgroundColor: bgColor,
      body: SafeArea(
